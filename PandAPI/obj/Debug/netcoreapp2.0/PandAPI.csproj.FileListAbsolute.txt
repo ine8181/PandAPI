@@ -1,0 +1,14 @@
+C:\play\PandAPI\PandAPI\bin\Debug\netcoreapp2.0\PandAPI.deps.json
+C:\play\PandAPI\PandAPI\bin\Debug\netcoreapp2.0\PandAPI.runtimeconfig.json
+C:\play\PandAPI\PandAPI\bin\Debug\netcoreapp2.0\PandAPI.runtimeconfig.dev.json
+C:\play\PandAPI\PandAPI\bin\Debug\netcoreapp2.0\PandAPI.dll
+C:\play\PandAPI\PandAPI\bin\Debug\netcoreapp2.0\PandAPI.pdb
+C:\play\PandAPI\PandAPI\obj\Debug\netcoreapp2.0\PandAPI.csprojResolveAssemblyReference.cache
+C:\play\PandAPI\PandAPI\obj\Debug\netcoreapp2.0\PandAPI.csproj.CoreCompileInputs.cache
+C:\play\PandAPI\PandAPI\obj\Debug\netcoreapp2.0\PandAPI.AssemblyInfoInputs.cache
+C:\play\PandAPI\PandAPI\obj\Debug\netcoreapp2.0\PandAPI.AssemblyInfo.cs
+C:\play\PandAPI\PandAPI\obj\Debug\netcoreapp2.0\PandAPI.dll
+C:\play\PandAPI\PandAPI\obj\Debug\netcoreapp2.0\PandAPI.pdb
+C:\play\PandAPI\PandAPI\bin\Debug\netcoreapp2.0\NUnit3.TestAdapter.dll
+C:\play\PandAPI\PandAPI\bin\Debug\netcoreapp2.0\nunit.engine.netstandard.dll
+C:\play\PandAPI\PandAPI\bin\Debug\netcoreapp2.0\Mono.Cecil.dll

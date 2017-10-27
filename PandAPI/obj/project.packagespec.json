@@ -1,0 +1,61 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "C:\\play\\PandAPI\\PandAPI\\PandAPI.csproj",
+    "projectName": "PandAPI",
+    "projectPath": "C:\\play\\PandAPI\\PandAPI\\PandAPI.csproj",
+    "outputPath": "C:\\play\\PandAPI\\PandAPI\\obj\\",
+    "projectStyle": "PackageReference",
+    "originalTargetFrameworks": [
+      "netcoreapp2.0"
+    ],
+    "frameworks": {
+      "netcoreapp2.0": {
+        "projectReferences": {}
+      }
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "target": "Package",
+          "version": "2.0.0"
+        },
+        "Microsoft.AspNetCore.All": {
+          "target": "Package",
+          "version": "2.0.0"
+        },
+        "Microsoft.NET.Test.Sdk": {
+          "target": "Package",
+          "version": "15.5.0-preview-20171025-02"
+        },
+        "MongoDB.Bson": {
+          "target": "Package",
+          "version": "2.4.4"
+        },
+        "MongoDB.Driver": {
+          "target": "Package",
+          "version": "2.4.4"
+        },
+        "MongoDB.Driver.Core": {
+          "target": "Package",
+          "version": "2.4.4"
+        },
+        "NUnit": {
+          "target": "Package",
+          "version": "3.8.1"
+        },
+        "NUnit3TestAdapter": {
+          "target": "Package",
+          "version": "3.8.0"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

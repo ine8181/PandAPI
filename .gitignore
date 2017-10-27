@@ -1,0 +1,6 @@
+**/bin/**/
+**/obj/**/
+.idea/.idea.PandAPI/.idea/workspace.xml
+PandAPI/bin/
+PandAPI/obj/
+PandAPI/wwwroot/

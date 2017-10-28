@@ -4,3 +4,4 @@
 PandAPI/bin/
 PandAPI/obj/
 PandAPI/wwwroot/
+.idea/**

@@ -21,7 +21,7 @@ namespace PandAPI.Tests
         [Test]
         public void TestInitStore()
         {
-            store.InitialiseIndex();
+0            store.InitialiseIndex();
         }
 
 
@@ -29,7 +29,7 @@ namespace PandAPI.Tests
         public void TestCreateUser()
         {
             var newUserName = Guid.NewGuid().ToString();
-            var result = this.store.AddUser(new UserModel {EmailAddress = newUserName, Password = "password"});
+            var result = this.store.AddUser(new UserModel {UserId = newUserName, Password = "password"});
             Assert.IsTrue(result);
         }
 
@@ -37,9 +37,9 @@ namespace PandAPI.Tests
         public void DuplicateUserCreation()
         {
             var newUserName = Guid.NewGuid().ToString();
-            var result = this.store.AddUser(new UserModel {EmailAddress = newUserName, Password = "password"});
+            var result = this.store.AddUser(new UserModel {UserId = newUserName, Password = "password"});
             Assert.IsTrue(result);
-            var newResult = this.store.AddUser(new UserModel {EmailAddress = newUserName, Password = "password"});
+            var newResult = this.store.AddUser(new UserModel {UserId = newUserName, Password = "password"});
             Assert.IsFalse(newResult);
         }
 
@@ -98,6 +98,36 @@ namespace PandAPI.Tests
             Assert.IsTrue(users.Any(u => u == user2));
         }
 
+        [Test]
+        public void AddObjectTest()
+        {
+            var user1 = Guid.NewGuid().ToString();
+            var group1 = Guid.NewGuid().ToString();
+
+            AddUserAndAssert(user1);
+            AddGroupAndAssert(group1);
+
+            Assert.IsTrue(store.AddUserToGroup(user1, group1));
+
+            var result = store.AddObject(new {hello = "world"}, user1, group1);
+            
+            Assert.IsNotNull(result);
+        }
+        
+        [Test]
+        public void AddObjectTest_UserNotInGroup()
+        {
+            var user1 = Guid.NewGuid().ToString();
+            var group1 = Guid.NewGuid().ToString();
+
+            AddUserAndAssert(user1);
+            AddGroupAndAssert(group1);
+
+            var result = store.AddObject(new {hello = "world"}, user1, group1);
+            
+            Assert.IsNull(result);
+        }
+        
 
         private void AddGroupAndAssert(string newGroupId)
         {
@@ -107,7 +137,7 @@ namespace PandAPI.Tests
 
         private void AddUserAndAssert(string newUserGuid)
         {
-            var addUserResult = this.store.AddUser(new UserModel {EmailAddress = newUserGuid});
+            var addUserResult = this.store.AddUser(new UserModel {UserId = newUserGuid});
             Assert.IsTrue(addUserResult);
         }
     }

@@ -8,7 +8,7 @@ AddObject(payload:any, principalObjectId?, groupId[], userId)
 
 - AddUser(userName)
 
-GetObjectsForGroup (groupId)
+- GetObjectsForGroup (groupId)
 
 GetObjectsForUser (userId) {
 	GetGroupsForUser(userId).Select(g => GetObjectsForGroup(g)).UnionAll();

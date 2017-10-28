@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks.Dataflow;
 using MongoDB.Driver;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using PandAPI.PandApi;
 
@@ -21,7 +22,7 @@ namespace PandAPI.Tests
         [Test]
         public void TestInitStore()
         {
-0            store.InitialiseIndex();
+            store.InitialiseIndex();
         }
 
 
@@ -94,7 +95,7 @@ namespace PandAPI.Tests
             var users = store.GetUsersForGroup(groupId);
 
             Assert.AreEqual(2, users.Count());
-            Assert.IsTrue(users.Any(u => u  == user1));
+            Assert.IsTrue(users.Any(u => u == user1));
             Assert.IsTrue(users.Any(u => u == user2));
         }
 
@@ -110,10 +111,10 @@ namespace PandAPI.Tests
             Assert.IsTrue(store.AddUserToGroup(user1, group1));
 
             var result = store.AddObject(new {hello = "world"}, user1, group1);
-            
+
             Assert.IsNotNull(result);
         }
-        
+
         [Test]
         public void AddObjectTest_UserNotInGroup()
         {
@@ -124,10 +125,55 @@ namespace PandAPI.Tests
             AddGroupAndAssert(group1);
 
             var result = store.AddObject(new {hello = "world"}, user1, group1);
-            
+
             Assert.IsNull(result);
         }
+
+        [Test]
+        public void GetObjectsForUser()
+        {
+            var user1 = Guid.NewGuid().ToString();
+            var group1 = Guid.NewGuid().ToString();
+            AddUserAndAssert(user1);
+            AddGroupAndAssert(group1);
+
+            var adduserResult = store.AddUserToGroup(user1, group1);
+            Assert.IsTrue(adduserResult);
+            var objectid = store.AddObject(new {test = "object"}, user1, group1);
+            Assert.IsNotNull(objectid);
+
+            var objects = store.GetObjectsForUser(user1,0,10);
+            Assert.AreEqual(1, objects.Count());
+            
+            Console.WriteLine(JsonConvert.SerializeObject(objects));
+        }
         
+        [Test]
+        public void GetObjectsForUser_MultiGroup()
+        {
+            var user1 = Guid.NewGuid().ToString();
+            var group1 = Guid.NewGuid().ToString();
+            var group2 = Guid.NewGuid().ToString();
+            AddUserAndAssert(user1);
+            AddGroupAndAssert(group1);
+            AddGroupAndAssert(group2);
+
+            var adduserResult = store.AddUserToGroup(user1, group1);
+            var adduserResult2 = store.AddUserToGroup(user1, group2);
+            Assert.IsTrue(adduserResult);
+            Assert.IsTrue(adduserResult2);
+            
+            var objectid = store.AddObject(new {test = "group1"}, user1, group1);
+            Assert.IsNotNull(objectid);
+
+            var objectid2 = store.AddObject(new {test = "group2"}, user1, group1);
+            Assert.IsNotNull(objectid2);
+
+            var objects = store.GetObjectsForUser(user1,0,10);
+            Assert.AreEqual(2, objects.Count());
+            
+            Console.WriteLine(JsonConvert.SerializeObject(objects));
+        }
 
         private void AddGroupAndAssert(string newGroupId)
         {
